@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="api">API</h1>
+<h2 id="sumário">Sumário</h2>
+<ul>
+<li><a href="#envio-de-imagem">Envio Imagem</a>
+<ul>
+<li><a href="#resposta-sucesso-envio-imagem">Resposta Sucesso Envio Imagem</a></li>
+<li><a href="#caminho-negativo-envio-imagem">Caminho Negativo Envio Imagem</a></li>
+</ul>
+</li>
+<li><a href="#campos-complementares">Campos Complementares</a>
+<ul>
+<li><a href="#resposta-sucesso-campos-complementares">Resposta Sucesso Campos Complementares</a></li>
+<li><a href="#caminho-negativo-campos-complementares">Caminho Negativo Campos Complementares</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="envio-de-imagem">Envio de Imagem</h2>
+<p>Nesta requisição é enviado como base o id do lead a ser utilizado, a extensão do arquivo utilizado e base 64 do arquivo destinado.<br>
+O seu intuito é que a partir da foto da fatura seja criado sua unidade consumidora com as informações contidas no arquivo.</p>
+<p>Requisição Base:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"IdLead"</span> <span class="token punctuation">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span>
+	<span class="token string">"Extensao: "</span><span class="token punctuation">.</span>extensao"<span class="token punctuation">,</span>
+	<span class="token string">"ImagemBase64"</span> <span class="token punctuation">:</span> <span class="token string">"J465asdkwqb/..."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="resposta-sucesso-envio-imagem">Resposta Sucesso Envio Imagem</h3>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"unidadeConsumidora"</span> <span class="token punctuation">:</span> <span class="token string">"UC-XXXXX"</span><span class="token punctuation">,</span>
+	<span class="token string">"status"</span> <span class="token punctuation">:</span> <span class="token string">"Email"</span><span class="token punctuation">,</span>
+	<span class="token string">"referenciaValorContribuicao"</span> <span class="token punctuation">:</span> <span class="token string">"0.0xx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"percentualDireitosEconomicos"</span> <span class="token punctuation">:</span> <span class="token string">"0.0xx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"valorEstimado"</span> <span class="token punctuation">:</span> <span class="token string">"120.0xx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"numeroInstalacao"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		<span class="token string">"valor"</span> <span class="token punctuation">:</span> <span class="token string">"450000123"</span><span class="token punctuation">,</span>
+		<span class="token string">"reenviar"</span> <span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string">"pontuacao"</span> <span class="token punctuation">:</span> <span class="token number">1.0</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token string">"subClasse"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		<span class="token string">"valor"</span> <span class="token punctuation">:</span> <span class="token string">"Residencial"</span><span class="token punctuation">,</span>
+		<span class="token string">"reenviar"</span> <span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string">"pontuacao"</span> <span class="token punctuation">:</span> <span class="token number">1.0</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token string">"classe"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		<span class="token string">"valor"</span> <span class="token punctuation">:</span> <span class="token string">"Monofasico"</span><span class="token punctuation">,</span>
+		<span class="token string">"reenviar"</span> <span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string">"pontuacao"</span> <span class="token punctuation">:</span> <span class="token number">0.98</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token string">"mediaConsumo"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		<span class="token string">"valor"</span> <span class="token punctuation">:</span> <span class="token string">"120.0"</span><span class="token punctuation">,</span>
+		<span class="token string">"reenviar"</span> <span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string">"pontuacao"</span> <span class="token punctuation">:</span> <span class="token number">1.0</span>
+	<span class="token punctuation">}</span>
+	
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="caminho-negativo-envio-imagem">Caminho Negativo Envio Imagem</h3>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p><em>Body Vazio</em>: Algumas das informações ou todas não sejam preenchidas:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Conteúdo em branco."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Extensão não permitida:</em> É enviado um arquivo diferente das extensões permitidas (pdf, jpeg, jpg, png) :</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Extensão incorreta."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Lead incorreto</em>: O Id do Lead informado não existe ou está incorreto:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Lead não existe."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Lead não apto à inserção de nova UC</em>:  O Lead existe no sistema, porém seu status é igual ao <code>Qualificado</code> ou este Lead já foi convertido:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Lead já convertido."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Erro ao realizar leitura</em>: Casos possíveis (Mais comum ao menos comum):</p>
+<ul>
+<li>A qualidade da fatura está muito baixa para extração de dados</li>
+<li>A imagem inserida é uma base 64 que não é uma fatura</li>
+<li>Nosso sistema não consegue realizar a extração de dados desta fatura</li>
+<li>Há um problema na Most para leitura desta fatura, sendo necessário entrar em contato</li>
+</ul>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Erro ao realizar leitura."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Número de instalação já inserido</em>: Quando uma Unidade Consumidora diferente deste lead já possui este número de instalação:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Fatura inválida - Número de instalação já existe."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Sub-Classe</em>:Quando a sub classe não é lida na fatura, e, ao buscar um produto, o sistema não identifica um produto que atenda a todas sub-classes, necessitando prosseguir para os campos complementares:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Sub classe não legível, prosseguir para campos complementares."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Produto</em>: Quando todos os campos obrigatórios para a busca do produto estão preenchidos, porém, ao realizar a busca, não é encontrado um produto ativo para este perfil no momento:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Produto não existe."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Consumos</em>: Os consumos não foram lidos corretamente (Não foi atingido o critério mínimo para cálculos internos), necessitando prosseguir para os campos complementares:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Consumos não conseguiram ser lidos, prosseguir para campos complementares."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Ilegibilidade</em>: Os campos mínimos para leitura não foram lidos, nos campos que possuem as variáveis ‘valor’, ‘reenviar’ e ‘pontuacao’, eles irão ser preenchido com os valores contidos no campo dentro do sistema, e caso ele não seja lido o reenviar irá retornar ‘true’ e a pontuação da leitura, neste para fins de exemplo, o número de instalação não foi lido e os outros campos obrigatórios foram lidos:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"unidadeConsumidora"</span> <span class="token punctuation">:</span> <span class="token string">"UC-XXXXX"</span><span class="token punctuation">,</span>
+	<span class="token string">"status"</span> <span class="token punctuation">:</span> <span class="token string">"{Status do Lead}"</span><span class="token punctuation">,</span>
+	<span class="token string">"referenciaValorContribuicao"</span> <span class="token punctuation">:</span> <span class="token string">"0.0xx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"percentualDireitosEconomicos"</span> <span class="token punctuation">:</span> <span class="token string">"0.0xx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Campos mínimos não lidos."</span><span class="token punctuation">,</span>
+	<span class="token string">"valorEstimado"</span> <span class="token punctuation">:</span> <span class="token string">"120.0xx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"numeroInstalacao"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		<span class="token string">"valor"</span> <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+		<span class="token string">"reenviar"</span> <span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+		<span class="token string">"pontuacao"</span> <span class="token punctuation">:</span> <span class="token number">0.2</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token string">"subClasse"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		<span class="token string">"valor"</span> <span class="token punctuation">:</span> <span class="token string">"Residencial"</span><span class="token punctuation">,</span>
+		<span class="token string">"reenviar"</span> <span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string">"pontuacao"</span> <span class="token punctuation">:</span> <span class="token number">1.0</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token string">"classe"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		<span class="token string">"valor"</span> <span class="token punctuation">:</span> <span class="token string">"Monofasico"</span><span class="token punctuation">,</span>
+		<span class="token string">"reenviar"</span> <span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string">"pontuacao"</span> <span class="token punctuation">:</span> <span class="token number">0.98</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token string">"mediaConsumo"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		<span class="token string">"valor"</span> <span class="token punctuation">:</span> <span class="token string">"120.0"</span><span class="token punctuation">,</span>
+		<span class="token string">"reenviar"</span> <span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string">"pontuacao"</span> <span class="token punctuation">:</span> <span class="token number">1.0</span>
+	<span class="token punctuation">}</span>
+	
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Inelegibilidade</em>:  A fatura não passa pelos critérios de elegibilidade estipulados pela Evolua, necessitando de um processo interno para qualificar o cliente e se tornar elegível e assim seguir com a contratação:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Inelegível."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="campos-complementares">Campos Complementares</h2>
+<p>Nesta requisição é enviado como base o Id do Lead a ser modificado como obrigatório e como opcionais ‘Média de consumo’, ‘Número de instalação’, ‘Classe’ e ‘Sub-Classe’, onde, eles se tornam obrigatórios caso o ‘reenviar’ da requisição de envio de imagem seja ‘true’.</p>
+<p>Requisição Base:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"idLead"</span><span class="token punctuation">:</span>  <span class="token string">"xxxxxxxxx"</span><span class="token punctuation">,</span>
+	<span class="token string">"mediaDeConsumo"</span><span class="token punctuation">:</span>  <span class="token string">"100.0"</span><span class="token punctuation">,</span>
+	<span class="token string">"numeroInstalacao"</span><span class="token punctuation">:</span>  <span class="token string">"1234567"</span><span class="token punctuation">,</span>
+	<span class="token string">"classe"</span><span class="token punctuation">:</span>  <span class="token string">"Monofásico"</span><span class="token punctuation">,</span>
+	<span class="token string">"classificacao"</span><span class="token punctuation">:</span>  <span class="token string">"Residencial"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="resposta-sucesso-campos-complementares">Resposta Sucesso Campos Complementares</h3>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"unidadeConsumidora"</span><span class="token punctuation">:</span>  <span class="token string">"UC-xxxxx"</span><span class="token punctuation">,</span>
+	<span class="token string">"status"</span><span class="token punctuation">:</span>  <span class="token string">"Email"</span><span class="token punctuation">,</span>
+	<span class="token string">"referenciaValorContribuicao"</span><span class="token punctuation">:</span>  <span class="token string">"1.0xxxxxx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"percentualDireitosEconomicos"</span><span class="token punctuation">:</span>  <span class="token string">"1.0xxxxxx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"valorEstimado"</span><span class="token punctuation">:</span>  <span class="token string">"1.0xxxxxx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"economiaMensal"</span><span class="token punctuation">:</span>  <span class="token string">"1.0xxxxxx..."</span><span class="token punctuation">,</span>
+	<span class="token string">"economiaAnual"</span><span class="token punctuation">:</span>  <span class="token string">"1.0xxxxxx..."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="caminho-negativo-campos-complementares">Caminho Negativo Campos Complementares</h3>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p><em>Body Vazio</em>: O Id do Lead não foi preenchido:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Conteúdo em branco."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Lead não encontrado</em>: O Lead informado não foi encontrado ou o lead informado não possuí uma unidade consumidora ativa para continuidade da contratação:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Lead ou Unidade Consumidora ainda não inseridos no sistema."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Lead não encontrado</em>: O Lead informado não foi encontrado ou o lead informado não possuí uma unidade consumidora ativa para continuidade da contratação:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Lead ou Unidade Consumidora ainda não inseridos no sistema."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Erro em preenchimento</em> : Um campo ilegível que deveria ser informado, não foi informado no ‘Body’ da API:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"{mensagem_erro}"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><code>mensagem_erro</code>:</p>
+<ul>
+<li>Instalação nula e não preenchida;</li>
+<li>Classe nula e não preenchida;</li>
+<li>Sub-Classe (Classificação) nula e não preenchida;</li>
+<li>Média de consumo nula e não preenchida</li>
+</ul>
+<hr>
+<p><em>Número de instalação já inserido</em>: Quando uma Unidade Consumidora diferente deste lead já possui este número de instalação:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Fatura inválida - Número de instalação já existe."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Produto</em>: Quando todos os campos obrigatórios para a busca do produto estão preenchidos, porém, ao realizar a busca, não é encontrado um produto ativo para este perfil no momento:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Produto não existe."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Inelegibilidade</em>:  A fatura não passa pelos critérios de elegibilidade estipulados pela Evolua, necessitando de um processo interno para qualificar o cliente e se tornar elegível e assim seguir com a contratação:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Inelegível."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<p><em>Simulação</em>: Erro ao realizar a simulação da economia da fatura do cliente, onde ao ocorrer o erro, será necessário análise interna do time Evolua   :</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Erro ao realizar a simulação do plano"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</div>
+</body>
+
+</html>
