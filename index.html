@@ -9,38 +9,57 @@
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__html"><h1 id="api">API</h1>
-<h2 id="sumário">Sumário</h2>
-<ul>
-<li><a href="#envio-de-imagem">Envio Imagem</a>
-<ul>
-<li><a href="#resposta-sucesso-envio-imagem">Resposta Sucesso Envio Imagem</a></li>
-<li><a href="#caminho-negativo-envio-imagem">Caminho Negativo Envio Imagem</a></li>
-</ul>
-</li>
-<li><a href="#campos-complementares">Campos Complementares</a>
-<ul>
-<li><a href="#resposta-sucesso-campos-complementares">Resposta Sucesso Campos Complementares</a></li>
-<li><a href="#caminho-negativo-campos-complementares">Caminho Negativo Campos Complementares</a></li>
-</ul>
-</li>
-<li><a href="#consulta-cliente">Consulta Cliente</a>
-<ul>
-<li><a href="#id-do-lead">Id do Lead</a>
-<ul>
-<li><a href="#resposta-sucesso-consulta-cliente">Reposta Sucesso Consulta Cliente</a></li>
-<li><a href="#caminho-negativo-id-do-lead">Caminho Negativo Id do Lead</a></li>
-</ul>
-</li>
-<li><a href="#cpf-ou-cnpj">CPF/CNPJ</a>
-<ul>
-<li><a href="#resposta-sucesso-consulta-cliente">Reposta Sucesso Consulta Cliente</a></li>
-<li><a href="#caminho-negativo-cpf-ou-cnpj">Caminho Negativo CPF ou CNPJ</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<div class="stackedit__html"><h1 id="api">API</h1>
+	<h2 id="sumário">Sumário</h2>
+	<ul>
+	<li><a href="#envio-de-imagem">Envio Imagem</a>
+		<ul>
+		<li><a href="#resposta-sucesso-envio-imagem">Resposta Sucesso Envio Imagem</a></li>
+		<li><a href="#caminho-negativo-envio-imagem">Caminho Negativo Envio Imagem</a></li>
+		</ul>
+	</li>
+	<li><a href="#campos-complementares">Campos Complementares</a>
+		<ul>
+		<li><a href="#resposta-sucesso-campos-complementares">Resposta Sucesso Campos Complementares</a></li>
+		<li><a href="#caminho-negativo-campos-complementares">Caminho Negativo Campos Complementares</a></li>
+		</ul>
+	</li>
+	<li><a href="#consulta-cliente">Consulta Cliente</a>
+		<ul>
+		<li><a href="#id-do-lead">Id do Lead</a>
+		<ul>
+		<li><a href="#resposta-sucesso-consulta-cliente">Reposta Sucesso Consulta Cliente</a></li>
+		<li><a href="#caminho-negativo-id-do-lead">Caminho Negativo Id do Lead</a></li>
+		</ul>
+		</li>
+		<li><a href="#cpf-ou-cnpj">CPF/CNPJ</a>
+			<ul>
+			<li><a href="#resposta-sucesso-consulta-cliente">Reposta Sucesso Consulta Cliente</a></li>
+			<li><a href="#caminho-negativo-cpf-ou-cnpj">Caminho Negativo CPF ou CNPJ</a></li>
+			</ul>
+		</li>
+		</ul>
+	</li>
+	<li><a href="#relatorio-parceiros">Relatório dos Parceiros</a>
+		<ul>
+		<li><a href="#resposta-relatorio-parceiro">Repostas da requisição</a>
+			<ul>
+			<li><a href="#resposta-relatorio-parceiro-sucesso">Resposta Sucesso</a></li>
+			<li><a href="#dados-resposta-relatorio-parceiro-erro-vazio">Resposta Erro dados Vazios</a></li>
+			<li><a href="#dados-resposta-relatorio-parceiro-erro-execucao">Resposta Erro de Execução</a></li>
+			</ul>
+		</li>
+		<li><a href="#dados-resposta-relatorio-parceiro">Dados de Resposta do JSON</a></li>
+			<ul>
+			<li><a href="#relatorio-parceiro-funil">Funil de Vendas</a></li>
+			<li><a href="#relatorio-parceiro-leads">Leads</a></li>
+			<li><a href="#relatorio-parceiro-inadimplencia">Inadimplência</a></li>
+			<li><a href="#relatorio-parceiro-ttpf">Troca de Titularidade PF</a></li>
+			<li><a href="#relatorio-parceiro-ttpj">Troca de Titularidade Pj</a></li>
+			</ul>
+		</ul>
+	</li>
+	</ul>
 <h2 id="envio-de-imagem">Envio de Imagem</h2>
 <p>Nesta requisição é enviado como base o id do lead a ser utilizado, a extensão do arquivo utilizado e base 64 do arquivo destinado.<br>
 O seu intuito é que a partir da foto da fatura seja criado sua unidade consumidora com as informações contidas no arquivo.</p>
@@ -377,8 +396,230 @@ O seu intuito é que a partir da foto da fatura seja criado sua unidade consumid
 	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
 	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Não foi encontrado nenhum cliente com as informações disponibilizadas"</span>
 <span class="token punctuation">}</span>
-
 </code></pre>
+
+
+
+
+
+<h2 id="relatorio-parceiros">Relatório dos Parceiros</h2>
+<p>Esse end-point permite o dowload dos dados referente ao relatório dos parceiros em formato JSON, com o intuito de permitir uma automação
+	no processo de aquisição de dados por parte dos clientes.<br>Para essa reqiosição o cliente deve passar como parâmetro o ID do objeto
+	Salesforce referente à conta do parceiro e do contato do parceiro, assim como duas datas de início e fim para o período de busca 
+	no formato "yyyy-MM-dd".
+</p>
+<p>Requisição POST Base:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"idConta"</span> <span class="token punctuation">:</span> <span class="token string">"asd123"</span><span class="token punctuation">,</span>
+	<span class="token string">"idContato"</span> <span class="token punctuation">:</span> <span class="token string">"qwe456"</span><span class="token punctuation">,</span>
+	<span class="token string">"dataInicio"</span> <span class="token punctuation">:</span> <span class="token string">"2023-01-01"</span><span class="token punctuation">,</span>
+	<span class="token string">"dataFim"</span> <span class="token punctuation">:</span> <span class="token string">"2023-12-31"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<!-- -------------- -->
+<h3 id="resposta-relatorio-parceiro">Repostas da requisição</h3>
+<hr>
+<h4 id="resposta-relatorio-parceiro-sucesso">Resposta Sucesso</h4>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p>Requisição POST Base:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"oportunidades"</span> <span class="token punctuation">: [</span>
+		<span class="token punctuation">...</span>
+	<span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token string">"faturas"</span> <span class="token punctuation">: [</span>
+		<span class="token punctuation">...</span>
+	<span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token string">"leads"</span> <span class="token punctuation">: [</span>
+		<span class="token punctuation">...</span>
+	<span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token string">"ttpf"</span> <span class="token punctuation">: [</span>
+		<span class="token punctuation">...</span>
+	<span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token string">"ttpj"</span> <span class="token punctuation">: [</span>
+		<span class="token punctuation">...</span>
+	<span class="token punctuation">]</span><span class="token punctuation"></span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h4 id="dados-resposta-relatorio-parceiro-erro-vazio">Resposta Erro dados Vazios</h4>
+<p>Este tipo de erro ocorre quando algum dos <a href="#relatorio-parceiros">parâmetros</a> da requisição são nulos.</p>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p>Requisição POST Base:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Dados obrigatórios para a requisição estão em branco."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h4 id="dados-resposta-relatorio-parceiro-erro-execucao">Resposta Erro de Execução</h4>
+<p>Este erro ocorro quando há algum tipo de problema na requisição dos dados requisitados ou no preenchimento do DTO de resposta.</p>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p>Requisição POST Base:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token punctuation"><em>Mensagem de erro do Apex...</em></span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<h3 id="dados-resposta-relatorio-parceiro">Dados de Resposta do JSON</h3>
+<hr>
+
+
+<h4 id="relatorio-parceiro-funil">Funil de Vendas</h4>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p>Mapeamento dos campos equivalentes no JSON em relação às colunas da aba do Funil de Vendas do documento <em>xlsx</em>.</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"contaParceiroNome"</span><span class="token punctuation">: Conta Parceira,</span>
+	<span class="token string">"contatoParceiroNome"</span><span class="token punctuation">: Vendedor,</span>
+	<span class="token string">"cpfContatoParceiro"</span><span class="token punctuation">: CPF,</span>
+	<span class="token string">"nomeOportunidade"</span><span class="token punctuation">: Nome da Oportunidade,</span>
+	<span class="token string">"nomeConta"</span><span class="token punctuation">: Razão Social,</span>
+	<span class="token string">"pin"</span><span class="token punctuation">: Pin,</span>
+	<span class="token string">"cpfCnpj"</span><span class="token punctuation">: CPF/CNPJ,</span>
+	<span class="token string">"telefone"</span><span class="token punctuation">: Telefone de Contato,</span>
+	<span class="token string">"subClasseUco"</span><span class="token punctuation">: Classe,</span>
+	<span class="token string">"numeroInstalacao"</span><span class="token punctuation">: Numero Instalacao,</span>
+	<span class="token string">"emailParaContatoContrato"</span><span class="token punctuation">: Email,</span>
+	<span class="token string">"status"</span><span class="token punctuation">: Status,</span>
+	<span class="token string">"statusAssinatura"</span><span class="token punctuation">: Status Assinatura,</span>
+	<span class="token string">"celulaQualidade"</span><span class="token punctuation">: Célula de Qualidade,</span>
+	<span class="token string">"dataAssinatura"</span><span class="token punctuation">: Data de Assinatura,</span>
+	<span class="token string">"dataAtivacao"</span><span class="token punctuation">: Data de Ativação,</span>
+	<span class="token string">"auditoria"</span><span class="token punctuation">: Auditoria,</span>
+	<span class="token string">"dataAuditoria"</span><span class="token punctuation">: Data da Conclusão da Auditoria,</span>
+	<span class="token string">"motivoReprovacaoAuditoria"</span><span class="token punctuation">: Motivo Reprovação Auditoria,</span>
+	<span class="token string">"saldoInjecao"</span><span class="token punctuation">: Injeção Cliente,</span>
+	<span class="token string">"percentualDireito"</span><span class="token punctuation">: Percentual de Desconto,</span>
+	<span class="token string">"fidelidadeMeses"</span><span class="token punctuation">: Aviso de Saída (meses),</span>
+	<span class="token string">"descontoDobro"</span><span class="token punctuation">: Desconto em Dobro,</span>
+	<span class="token string">"bonusCliente"</span><span class="token punctuation">: Bônus do Cliente,</span>
+	<span class="token string">"dataUltimaAtualizacao"</span><span class="token punctuation">: Data da ultima atualizacao,</span>
+	<span class="token string">"dataCriacaoContrato"</span><span class="token punctuation">: Data criação do contrato,</span>
+	<span class="token string">"acompanhamentoCelula"</span><span class="token punctuation">: Acompanhamento celula de qualidade,</span>
+	<span class="token string">"statusInjecao"</span><span class="token punctuation">: Status da Injeção,</span>
+	<span class="token string">"fatGarantia"</span><span class="token punctuation">: Faturamento Garantia,</span>
+	<span class="token string">"segmentoContrato"</span><span class="token punctuation">: Segmento,</span>
+	<span class="token string">"distribuidora"</span><span class="token punctuation">: Distribuidora Local,</span>
+	<span class="token string">"cidade"</span><span class="token punctuation">: Cidade,</span>
+	<span class="token string">"loginOportunidade"</span><span class="token punctuation">: Login,</span>
+	<span class="token string">"senhaOportunidade"</span><span class="token punctuation">: Senha,</span>
+	<span class="token string">"linkB2C"</span><span class="token punctuation">: Link Termo B2C,</span>
+	<span class="token string">"linkContrato"</span><span class="token punctuation">: Link Contrato,</span>
+	<span class="token string">"motivoCancelamento"</span><span class="token punctuation">: Motivo do cancelamento,</span>
+	<span class="token string">"dataSolicitacaoCancelamento"</span><span class="token punctuation">: Data de Solicitação de Cancelamento,</span>
+	<span class="token string">"dataCancelamento"</span><span class="token punctuation">: Data de Cancelamento,</span>
+	<span class="token string">"comentarios"</span><span class="token punctuation">: Comentários,</span>
+	<span class="token string">"observacoes"</span><span class="token punctuation">: Observações,</span>
+
+	<span class="token string">"sfidContratoAntigo"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"tipoRelatorio"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"statusUcoTT"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"statusContrato"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"contractNumber"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"nomeUco"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"emailValidado"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"dataValidacaoEmail"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"isAssinado"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"cpfConta"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"observacoesUco"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"kwhMes"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em>,</span>
+	<span class="token string">"telefoneOportunidade"</span><span class="token punctuation">: <em>Irrelevante para o Funil</em></span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+
+<h4 id="relatorio-parceiro-leads">Leads</h4>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p>Mapeamento dos campos equivalentes no JSON em relação às colunas da aba de Leads no documento <em>xlsx</em>.</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"nomeContatoParceiro"</span><span class="token punctuation">: Vendedor,</span>
+	<span class="token string">"nomeLead"</span><span class="token punctuation">: Nome,</span>
+	<span class="token string">"dataCriacaoLead"</span><span class="token punctuation">: Data de Criacao,</span>
+	<span class="token string">"status"</span><span class="token punctuation">: Status,</span>
+	<span class="token string">"email"</span><span class="token punctuation">: Email,</span>
+	<span class="token string">"mobilePhone"</span><span class="token punctuation">: Celular,</span>
+	<span class="token string">"statusElegibilidadeManual"</span><span class="token punctuation">: Status de Elegibilidade Manual,</span>
+	<span class="token string">"motivoDesqualificacao"</span><span class="token punctuation">: Motivo,</span>
+	<span class="token string">"linkFluxoManual"</span><span class="token punctuation">: Link para Fluxo Manual,</span>
+	<span class="token string">"mediaConsumo"</span><span class="token punctuation">: Média de consumo,</span>
+	<span class="token string">"acompanhamento"</span><span class="token punctuation">: Status do Acompanhamento,</span>
+	<span class="token string">"classe"</span><span class="token punctuation">: Subclasse,</span>
+
+	<span class="token string">"id"</span><span class="token punctuation">: <em>Irrelevante para os Leads</em><em>Irrelevante para os Leads</em>,</span>
+	<span class="token string">"cpfCnpjLead"</span><span class="token punctuation">: <em>Irrelevante para os Leads</em>,</span>
+	<span class="token string">"nomeUCL"</span><span class="token punctuation">: <em>Irrelevante para os Leads</em>,</span>
+	<span class="token string">"numeroInstalacao"</span><span class="token punctuation">: <em>Irrelevante para os Leads</em>,</span>
+	<span class="token string">"statusTT"</span><span class="token punctuation">: <em>Irrelevante para os Leads</em>,</span>
+	<span class="token string">"tentativas"</span><span class="token punctuation">: <em>Irrelevante para os Leads</em>,</span>
+	<span class="token string">"dataUltimaSolicitacao"</span><span class="token punctuation">: <em>Irrelevante para os Leads</em>,</span>
+	<span class="token string">"observacoes"</span><span class="token punctuation">: <em>Irrelevante para os Leads</em></span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<h4 id="relatorio-parceiro-inadimplencia">Inadimplência</h4>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p>Mapeamento dos campos equivalentes no JSON em relação às colunas da aba de Leads no documento <em>xlsx</em>.</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"nomeContatoParceiro"</span><span class="token punctuation">: Vendedor,</span>
+	<span class="token string">"nomeConsorcio"</span><span class="token punctuation">: Consórcio/Coop,</span>
+	<span class="token string">"numeroInstalacao"</span><span class="token punctuation">: Nº de instalação,</span>
+	<span class="token string">"statusFatura"</span><span class="token punctuation">: Status,</span>
+	<span class="token string">"nomeAccount"</span><span class="token punctuation">: Nome da conta,</span>
+	<span class="token string">"cpfcnpj"</span><span class="token punctuation">: CPF/CNPJ,</span>
+	<span class="token string">"telefone"</span><span class="token punctuation">: Telefone de contato,</span>
+	<span class="token string">"email"</span><span class="token punctuation">: Email para contato,</span>
+	<span class="token string">"subClasse"</span><span class="token punctuation">: Subclasse,</span>
+	<span class="token string">"dataAtivacaoContrato"</span><span class="token punctuation">: Data de ativação,</span>
+	<span class="token string">"valorFatura"</span><span class="token punctuation">: Valor (R$),</span>
+	<span class="token string">"dataVencimento"</span><span class="token punctuation">: Data de Vencimento,</span>
+	<span class="token string">"dataVencimentoOriginal"</span><span class="token punctuation">: Data de Vencimento Original,</span>
+	<span class="token string">"diasAtraso"</span><span class="token punctuation">: Dias em atraso,</span>
+	<span class="token string">"linkDemonstrativo"</span><span class="token punctuation">: Link do Demonstrativo,</span>
+	<span class="token string">"numeroFaturasFaturadas"</span><span class="token punctuation">: Faturas faturadas,</span>
+	<span class="token string">"cobrancaExterna"</span><span class="token punctuation">: Cobrança Externa,</span>
+
+	<span class="token string">"nomeContatoParceiro"</span><span class="token punctuation">: <em>Irrelevante para Inadimplência</em>,</span>
+	<span class="token string">"nomeContaParceira"</span><span class="token punctuation">: <em>Irrelevante para Inadimplência</em></span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<h4 id="relatorio-parceiro-ttpf">Troca de Titularidade PF</h4>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p>Mapeamento dos campos equivalentes no JSON em relação às colunas da aba de Troca de Titularidade PF no documento <em>xlsx</em>.</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"nomeContatoParceiro"</span><span class="token punctuation">: Vendedor/Conta Parceira,</span>
+	<span class="token string">"nomeUCL"</span><span class="token punctuation">: Unidade Consumidora,</span>
+	<span class="token string">"nomeLead"</span><span class="token punctuation">: Nome,</span>
+	<span class="token string">"cpfCnpjLead"</span><span class="token punctuation">: CPF/CNPJ,</span>
+	<span class="token string">"numeroInstalacao"</span><span class="token punctuation">: Numero Instalacao,</span>
+	<span class="token string">"statusTTUCL"</span><span class="token punctuation">: Status da Troca de Titularidade,</span>
+	<span class="token string">"tentativas"</span><span class="token punctuation">: Tentativas,</span>
+	<span class="token string">"dataUltimaSolicitacao"</span><span class="token punctuation">: Data da última solicitação,</span>
+	<span class="token string">"observacoes"</span><span class="token punctuation">: Observações,</span>
+	<span class="token string">"mediaConsumoUCL"</span><span class="token punctuation">: Média de Consumo,</span>
+	<span class="token string">"mobilePhone"</span><span class="token punctuation">: Telefone de Contato,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<h4 id="relatorio-parceiro-ttpj">Troca de Titularidade PJ</h4>
+<p><a href="#sum%C3%A1rio">Sumário</a></p>
+<p>Mapeamento dos campos equivalentes no JSON em relação às colunas da aba de Troca de Titularidade PJ no documento <em>xlsx</em>.</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"contatoParceiroNome"</span><span class="token punctuation">: Vendedor,</span>
+	<span class="token string">"contractNumber"</span><span class="token punctuation">: Número do Contrato,</span>
+	<span class="token string">"nomeUco"</span><span class="token punctuation">: Unidade Consumidora do Lead,</span>
+	<span class="token string">"dataAssinatura"</span><span class="token punctuation">: Data de Assinatura,</span>
+	<span class="token string">"nomeConta"</span><span class="token punctuation">: Nome da Conta,</span>
+	<span class="token string">"cpfConta"</span><span class="token punctuation">: CPF/CNPJ,</span>
+	<span class="token string">"numeroInstalacao"</span><span class="token punctuation">: Numero Instalacao,</span>
+	<span class="token string">"statusUcoTT"</span><span class="token punctuation">: Status da Troca de Titularidade,</span>
+	<span class="token string">"observacoesUco"</span><span class="token punctuation">: Observações,</span>
+	<span class="token string">"kwhMes"</span><span class="token punctuation">: Kwh / Mês,</span>
+	<span class="token string">"telefoneOportunidade"</span><span class="token punctuation">: Telefone de Contato,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
 </div>
 </body>
 
