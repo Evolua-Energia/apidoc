@@ -12,6 +12,12 @@
 <div class="stackedit__html"><h1 id="api">API</h1>
 	<h2 id="sumário">Sumário</h2>
 	<ul>
+	<li><a href="#inserir-lead">Inserir Lead</a>
+		<ul>
+		<li><a href="#resposta-sucesso-envio-imagem">Resposta Sucesso Envio Imagem</a></li>
+		<li><a href="#caminho-negativo-envio-imagem">Caminho Negativo Envio Imagem</a></li>
+		</ul>
+	</li>
 	<li><a href="#envio-de-imagem">Envio Imagem</a>
 		<ul>
 		<li><a href="#resposta-sucesso-envio-imagem">Resposta Sucesso Envio Imagem</a></li>
@@ -60,6 +66,27 @@
 		</ul>
 	</li>
 	</ul>
+<h2 id="inserir-lead">Inserir Lead</h2>
+<p>Interface disponibilizada para inserção de novos Leads na esteira comercial por parceiros da Evolua. Essa é a primeira etapa para o início do cadastro na esteira comercial. 
+	<br>O ID do Lead retornado por essa API deve ser  armazenado pelo parceiro pois será usado em todas as próximas interfaces de cadastro do cliente. 
+</p>
+<p>Requisição Base:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+	<span class="token string">"nomeCompleto"</span> <span class="token punctuation">:</span> <span class="token string">"Adalberto da Silva"</span><span class="token punctuation">,</span>
+	<span class="token string">"cpfCnpj"</span> <span class="token punctuation">:</span> <span class="token string">"47851101042"</span><span class="token punctuation">,</span>
+	<span class="token string">"celular"</span> <span class="token punctuation">:</span> <span class="token string">"11111111111"</span><span class="token punctuation">,</span>
+	<span class="token string">"email"</span> <span class="token punctuation">:</span> <span class="token string">"adalbeto.silva@evoluaenergia.com.br"</span><span class="token punctuation">,</span>
+	<span class="token string">"dataNascimento"</span> <span class="token punctuation">:</span> <span class="token string">"1990-10-11"</span><span class="token punctuation">,</span>
+	<span class="token string">"nacionalidade"</span> <span class="token punctuation">:</span> <span class="token string">"brasileira"</span><span class="token punctuation">,</span>
+	<span class="token string">"profissao"</span> <span class="token punctuation">:</span> <span class="token string">"comerciante"</span><span class="token punctuation">,</span>
+	<span class="token string">"estadoCivil"</span> <span class="token punctuation">:</span> <span class="token string">"solteiro"</span><span class="token punctuation">,</span>
+	<span class="token string">"contaParceira"</span> <span class="token punctuation">:</span> <span class="token string">"11111111111"</span><span class="token punctuation">,</span>
+	<span class="token string">"idVendedor"</span> <span class="token punctuation">:</span> <span class="token string">"11111111111"</span><span class="token punctuation">,</span>
+	
+<span class="token punctuation">}</span>
+
+</code></pre>
+
 <h2 id="envio-de-imagem">Envio de Imagem</h2>
 <p>Nesta requisição é enviado como base o id do lead a ser utilizado, a extensão do arquivo utilizado e base 64 do arquivo destinado.<br>
 O seu intuito é que a partir da foto da fatura seja criado sua unidade consumidora com as informações contidas no arquivo.</p>
@@ -255,14 +282,6 @@ O seu intuito é que a partir da foto da fatura seja criado sua unidade consumid
 <pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
 	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
 	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Conteúdo em branco."</span>
-<span class="token punctuation">}</span>
-
-</code></pre>
-<hr>
-<p><em>Lead não encontrado</em>: O Lead informado não foi encontrado ou o lead informado não possuí uma unidade consumidora ativa para continuidade da contratação:</p>
-<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
-	<span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
-	<span class="token string">"mensagem"</span> <span class="token punctuation">:</span> <span class="token string">"Lead ou Unidade Consumidora ainda não inseridos no sistema."</span>
 <span class="token punctuation">}</span>
 
 </code></pre>
